@@ -1,0 +1,30 @@
+Search:
+
+
+<h1>Listing tips</h1>
+
+<table>
+  <tr>
+    <th>Body</th>
+    <th>User</th>
+    <th>Pageloads</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tips.each do |tip| %>
+  <tr>
+    <td><%= tip.body %></td>
+    <td><%= tip.user %></td>
+    <td><%= tip.pageloads %></td>
+    <td><%= link_to 'Show', tip %></td>
+    <td><%= link_to 'Edit', edit_tip_path(tip) %></td>
+    <td><%= link_to 'Destroy', tip, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tip', new_tip_path %>

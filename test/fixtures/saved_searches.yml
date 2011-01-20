@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  search: MyString
+  user: MyString
+  ip: MyString
+
+two:
+  search: MyString
+  user: MyString
+  ip: MyString
