@@ -2,11 +2,12 @@ class TipsController < ApplicationController
   # GET /tips
   # GET /tips.xml
   def index
-    @tips = Tip.all
+    @tip = Tip.find(:last)
+    @ip = request.remote_ip
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @tips }
+      format.xml  { render :xml => @tip }
     end
   end
 

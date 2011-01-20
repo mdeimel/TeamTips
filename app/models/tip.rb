@@ -20,6 +20,23 @@ class Tip < ActiveRecord::Base
   def body=(val)
     self.content = [title, val].join(@@title_separator)
   end
+  
+  def self.search params
+    #Tip.find(:all, :conditions => 
+    # ["content like ? AND content like ?"] + ["%database%", "%step%"])
+    query = Array.new
+    conditions = Array.new
+    if !params[:user].nil?
+      query.push "user like ?"
+      conditions.push params[:user]
+    end
+    # Split all search criteria on spaces, and search in content
+    params[:search].split(' ').each do |keyword|
+      query.push "content like ?"
+      conditions.push "%#{keyword}%"
+    end
+    Tip.find(:all, :conditions => [query.join(' AND ')] + conditions)
+  end
 
   private
   @@title_separator = "\r\ntitle\r\n"
