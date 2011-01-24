@@ -1,5 +1,10 @@
 BDR::Application.routes.draw do
   resources :tips
+  
+  match '/' => redirect('/tips')
+  
+  match '/login' => "Application#login"
+  match '/logout' => "Application#logout"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

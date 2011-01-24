@@ -1,29 +1,31 @@
-Search:
-<%= @ip %>
-<h1>Listing tips</h1>
-
 <table>
-  <tr>
-    <th>Body</th>
-    <th>User</th>
-    <th>Pageloads</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-Latest tip:
-  <tr>
-    <td><%= @tip.title %></td>
-    <td><%= @tip.body %></td>
-    <td><%= @tip.user %></td>
-    <td><%= @tip.pageloads %></td>
-    <td><%= link_to 'Show', @tip %></td>
-    <td><%= link_to 'Edit', edit_tip_path(@tip) %></td>
-    <td><%= link_to 'Destroy', @tip, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<%= form_tag tips_path, :method => "get" do %>
+  <tr><td>
+  <%= label_tag :search, "Search:" %>
+  </td><td>
+  <%= text_field_tag :search, params[:search] %>
+  </td></tr>
+  <tr><td>
+  <%= label_tag :user, "User:" %>
+  </td><td>
+  <%= text_field_tag :user, params[:user] %>
+  </td></tr>
+  <tr><td colspan=2 style="text-align:right;">
+  <%= submit_tag "Search", :name => nil %>
+  </td><td style="width:100px;text-align:right;">
+  <%= button_to 'New Tip', new_tip_path %>
+  </td><td>
+<% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Tip', new_tip_path %>
+<table>
+<% @tips.each do |tip| %>
+  <tr>
+    <td><%= tip.title %></td>
+    <td><%= tip.body %></td>
+    <td><%= tip.user %></td>
+    <td><%= tip.pageloads %></td>
+    <td><%= link_to 'Show', tip %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,80 @@
+/*
+// Color Palette
+//Light Gray 858585
+//Brown 453A36
+//Dark Gray 242122
+//Dark Red 61041B
+//Light Red B00731
+*/
+
+#logo {
+  font-family: "Arial";
+  font-size: 200%;
+  color: #242122;
+  padding: 5px;
+  margin: 0;
+}
+#logo_team {
+  color: #B00731;
+}
+#logo_line {
+  margin: 5px;
+  border: 0;
+  background-color: #61041B;
+  color: #61041B;
+  height: 6px;
+}
+table {
+  display: inline;
+}
+#login {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+#login form, #login div, #login input {
+  display: inline;
+}
+#login #username, #login #password {
+  width: 5em;
+}
+/* Flash Messages */
+#flash_div {
+  position: absolute;
+  left: 14em;
+  top: 0px;
+  font-size: 150%;
+  background: rgb(36, 33, 34); /* Fallback for browsers that do not support rgba */
+  background: rgba(36, 33, 34, 0.7);
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  -moz-border-radius-bottomleft: 15px;
+  -moz-border-radius-bottomright: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.flash_notice {
+  padding: 5px;
+  background: rgb(0, 255, 0); /* Fallback for browsers that do not support rgba */
+  background: rgba(0, 255, 0, 0.7);
+}
+.flash_warning {
+  padding: 5px;
+  background: rgb(255, 255, 0); /* Fallback for browsers that do not support rgba */
+  background: rgba(255, 255, 0, 0.7);
+}
+.flash_error {
+  padding: 5px;
+  background: rgb(255, 0, 0); /* Fallback for browsers that do not support rgba */
+  background: rgba(255, 0, 0, 0.7);
+}
+/*
+.button {
+  text-decoration: none;
+  background-color: #B00731;
+  color: #FFFFFF;
+  padding: 10px;
+}
+A:link, A:visited, A:active, A:hover {text-decoration: none}
+*/

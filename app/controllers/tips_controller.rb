@@ -2,12 +2,11 @@ class TipsController < ApplicationController
   # GET /tips
   # GET /tips.xml
   def index
-    @tip = Tip.find(:last)
-    @ip = request.remote_ip
-
+    params[:ip] = request.remote_ip
+    @tips, @search_time = Tip.search params, session[:user]
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @tip }
+      format.xml  { render :xml => @tips }
     end
   end
 
@@ -64,7 +63,7 @@ class TipsController < ApplicationController
     @tip = Tip.find(params[:id])
 
     respond_to do |format|
-      if @tip.update_attributes(params[:tip])
+      if @tip.user==session[:user] && @tip.update_attributes(params[:tip])
         format.html { redirect_to(@tip, :notice => 'Tip was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -78,7 +77,10 @@ class TipsController < ApplicationController
   # DELETE /tips/1.xml
   def destroy
     @tip = Tip.find(params[:id])
-    @tip.destroy
+    # Tips can only be destroyed by the user who created them
+    if @tip.user==session[:user]
+      @tip.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to(tips_url) }

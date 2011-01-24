@@ -8,6 +8,12 @@
 </head>
 <body>
 
+<div id="logo">{<span id="logo_team">Team</span>Tips</div>
+<hr id="logo_line" />
+
+<%= render 'login' %>
+<%= render 'flash', :flash => flash %>
+
 <%= yield %>
 
 </body>

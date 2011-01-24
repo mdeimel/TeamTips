@@ -20,6 +20,7 @@
   <%= @tip.pageloads %>
 </p>
 
-
-<%= link_to 'Edit', edit_tip_path(@tip) %> |
+<% if session[:user]==@tip.user %>
+  <%= link_to 'Edit', edit_tip_path(@tip) %> |
+<% end %>
 <%= link_to 'Back', tips_path %>

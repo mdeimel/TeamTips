@@ -10,10 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110115042836) do
+ActiveRecord::Schema.define(:version => 20110124163006) do
+
+  create_table "ldap_infos", :force => true do |t|
+    t.string   "host"
+    t.string   "prefix"
+    t.string   "postfix"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "saved_searches", :force => true do |t|
     t.string   "search"
+    t.float    "seconds"
     t.string   "user"
     t.string   "ip"
     t.datetime "created_at"

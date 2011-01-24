@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  host: MyString
+  prefix: MyString
+  postfix: MyString
+
+two:
+  host: MyString
+  prefix: MyString
+  postfix: MyString

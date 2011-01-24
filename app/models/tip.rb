@@ -21,21 +21,16 @@ class Tip < ActiveRecord::Base
     self.content = [title, val].join(@@title_separator)
   end
   
-  def self.search params
-    #Tip.find(:all, :conditions => 
-    # ["content like ? AND content like ?"] + ["%database%", "%step%"])
-    query = Array.new
-    conditions = Array.new
-    if !params[:user].nil?
-      query.push "user like ?"
-      conditions.push params[:user]
+  def self.search params, user
+    if !params[:search].nil? && !params[:search].empty?
+      query, conditions = create_conditions params
+      start_time = Time.now
+      tips = Tip.find(:all, :conditions => [query.join(' AND ')] + conditions)
+      finish_time = Time.now
+      search_time = finish_time - start_time
+      SavedSearch.create!(:search=>params[:search], :seconds=>search_time, :user=>user, :ip=>params[:ip])
     end
-    # Split all search criteria on spaces, and search in content
-    params[:search].split(' ').each do |keyword|
-      query.push "content like ?"
-      conditions.push "%#{keyword}%"
-    end
-    Tip.find(:all, :conditions => [query.join(' AND ')] + conditions)
+    [tips||=Array.new, search_time||= nil]
   end
 
   private
@@ -45,5 +40,22 @@ class Tip < ActiveRecord::Base
       self.errors.add_to_base "Title and body must both be set"
       return false
     end
+  end
+  
+  def self.create_conditions params
+    #Tip.find(:all, :conditions => 
+    # ["content like ? AND content like ?"] + ["%database%", "%step%"])
+    query = Array.new
+    conditions = Array.new
+    if !params[:user].nil? && !params[:user].empty?
+      query.push "user like ?"
+      conditions.push params[:user]
+    end
+    # Split all search criteria on spaces, and search in content
+    params[:search].split(' ').each do |keyword|
+      query.push "content like ?"
+      conditions.push "%#{keyword}%"
+    end
+    [query, conditions]
   end
 end
