@@ -1,4 +1,4 @@
-<table>
+<table style="inline_table">
   <%= form_tag tips_path, :method => "get" do %>
     <tr><td>
     <%= label_tag :search, "Search:" %>
@@ -18,14 +18,25 @@
   </td></tr>
 </table>
 <br>
-<table>
-<% @tips.each do |tip| %>
-  <tr>
-    <td><%= tip.title %></td>
-    <td><%= tip.body %></td>
-    <td><%= tip.user %></td>
-    <td><%= tip.pageloads %></td>
-    <td><%= link_to 'Show', tip %></td>
-  </tr>
-<% end %>
+<table class="search_table">
+  <% @tips.each do |tip| %>
+    <tr onclick="location.href='<%= tip_path(tip.id) %>'" class="tip_title">
+      <td colspan=2><%= tip.title %> (<%= tip.user %>)</td>
+    </tr>
+    <% if !@search_split.nil? %>
+      <% @search_split.each do |split| %>
+        <% tip.body.scan(/^.*#{split}.*$/i).each do |search_lines| %>
+          <tr><td style="width:1em;"></td><td>
+          <%= raw(search_lines.gsub(/#{split}/i, "<b>#{split}</b>")) %>
+          </td></tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
 </table>
+<br>
+<% if !@search_time.nil? %>
+  <b>Search completed in <%= @search_time>1?"#{@search_time/1000} seconds":"#{@search_time} milliseconds" %></b>
+  <br>
+  <b>Page load time in <%= (page_time=Time.now-@start_time)>1?"#{page_time/1000} seconds":"#{page_time} milliseconds" %></b>
+<% end %>

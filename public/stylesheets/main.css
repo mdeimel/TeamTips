@@ -7,6 +7,9 @@
 //Light Red B00731
 */
 
+body {
+  //margin: 0px auto;
+}
 #logo {
   font-family: "Arial";
   font-size: 200%;
@@ -24,7 +27,7 @@
   color: #61041B;
   height: 6px;
 }
-table {
+.inline_table {
   display: inline;
 }
 #login {
@@ -68,6 +71,18 @@ table {
   padding: 5px;
   background: rgb(255, 0, 0); /* Fallback for browsers that do not support rgba */
   background: rgba(255, 0, 0, 0.7);
+}
+/* Tip Search Formatting */
+.search_table {
+  width:100%;
+}
+.tip_title {
+  background-color: #61041B;
+  color: #FFFFFF;
+  font-size: 120%;
+}
+.tip_title:hover {
+  background-color: #B00731;
 }
 /*
 .button {

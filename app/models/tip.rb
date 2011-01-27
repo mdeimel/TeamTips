@@ -21,16 +21,16 @@ class Tip < ActiveRecord::Base
     self.content = [title, val].join(@@title_separator)
   end
   
-  def self.search params, user
-    if (!params[:search].nil? && !params[:search].empty?) || (!params[:user].nil? && !params[:user].empty?)
-      query, conditions = create_conditions params
+  def self.search search_str, search_user, session_user, ip
+    if (!search_str.nil? && !search_str.empty?) || (!search_user.nil? && !search_user.empty?)
+      query, conditions, split = create_conditions search_str, search_user
       start_time = Time.now
       tips = Tip.find(:all, :conditions => [query.join(' AND ')] + conditions)
       finish_time = Time.now
-      search_time = finish_time - start_time
-      SavedSearch.create!(:search=>"#{params[:search]}---#{params[:user]}", :seconds=>search_time, :user=>user, :ip=>params[:ip])
+      search_time = (finish_time - start_time).to_f
+      SavedSearch.create!(:search=>"#{search_str}---#{search_user}", :seconds=>search_time, :user=>session_user, :ip=>ip)
     end
-    [tips||=Array.new, search_time||= nil]
+    [tips||=Array.new, search_time||= nil, split||=Array.new]
   end
 
   private
@@ -42,22 +42,40 @@ class Tip < ActiveRecord::Base
     end
   end
   
-  def self.create_conditions params
+  def self.create_conditions search_str, search_user
     #Tip.find(:all, :conditions => 
     # ["content like ? AND content like ?"] + ["%database%", "%step%"])
     query = Array.new
     conditions = Array.new
-    if !params[:user].nil? && !params[:user].empty?
+    if !search_user.nil? && !search_user.empty?
       query.push "user like ?"
-      conditions.push params[:user]
+      conditions.push search_user
     end
-    if !params[:search].nil? && !params[:search].empty?
-      # Split all search criteria on spaces, and search in content
-      params[:search].split(' ').each do |keyword|
+    if !search_str.nil? && !search_str.empty?
+      # Split search criteria and search in content
+      split = split_search(search_str)
+      split.each do |keyword|
         query.push "content like ?"
         conditions.push "%#{keyword}%"
       end
     end
-    [query, conditions]
+    [query, conditions, split]
+  end
+  
+  def self.split_search search_str
+    split = Array.new
+    # First separate quoted strings
+    regex = Regexp.new(/".*?"/)
+    quoted_strings = search_str.scan(regex)
+    quoted_strings.each do |str|
+      split.push(str.gsub("\"","")) # Push the string to the array, and remove quotes
+    end
+    search_str_no_quotes = search_str.gsub(regex, "") # Remove quoted strings from search
+    # Last, split on spaces
+    search_vals = search_str_no_quotes.split(' ')
+    search_vals.each do |str|
+      split.push(str)
+    end
+    split
   end
 end

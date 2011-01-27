@@ -2,8 +2,8 @@ class TipsController < ApplicationController
   # GET /tips
   # GET /tips.xml
   def index
-    params[:ip] = request.remote_ip
-    @tips, @search_time = Tip.search params, session[:user]
+    @start_time = Time.now
+    @tips, @search_time, @search_split = Tip.search params[:search], params[:user], session[:user], request.remote_ip
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tips }
