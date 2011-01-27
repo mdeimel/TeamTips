@@ -6,22 +6,15 @@ class LdapInfo < ActiveRecord::Base
   end
   
   def self.login user, password
-    @@ldap ||= connect_to_ldap
-    user_account = @@ldap.prefix + user + @@ldap.postfix
-    @@ldap.authenticate user_account, password
-    @@ldap.bind
+    # Can this be removed so a new connection is not made every time?
+    ldap_info = LdapInfo.find(:first) # and only
+    uid = ldap_info.prefix + user + ldap_info.postfix
+    ldap = Net::LDAP.new
+    ldap.host = ldap_info.host
+    ldap.authenticate uid, password
+    ldap.bind
   end
   
   private
   @@setup = nil
-  @@ldap = nil
-  
-  def self.connect_to_ldap
-    ldap_info = LdapInfo.find(:first) # and only
-    ldap = Net::LDAP.new
-    ldap.host = ldap_info.host
-    ldap.prefix = ldap_info.prefix
-    ldap.postfix = ldap_info.postfix
-    ldap
-  end
 end

@@ -44,6 +44,7 @@ class TipsController < ApplicationController
   # POST /tips
   # POST /tips.xml
   def create
+    params[:tip][:user]=session[:user] if !session[:user].nil?
     @tip = Tip.new(params[:tip])
 
     respond_to do |format|

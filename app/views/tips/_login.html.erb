@@ -1,6 +1,6 @@
 <span id="login">
   <% if session[:user].nil? %>
-    <% form_tag login_path, :method => "get" do %>
+    <% form_tag login_path, :method => "post" do %>
       <%= text_field_tag :username %>
       <%= password_field_tag :password if ldap_setup? %>
       <%= submit_tag 'Login' %>

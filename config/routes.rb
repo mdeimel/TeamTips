@@ -2,7 +2,7 @@ BDR::Application.routes.draw do
   resources :tips
   
   match '/' => redirect('/tips')
-  
+  match '/admin' => "Admin#index"
   match '/login' => "Application#login"
   match '/logout' => "Application#logout"
 

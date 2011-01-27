@@ -22,13 +22,13 @@ class Tip < ActiveRecord::Base
   end
   
   def self.search params, user
-    if !params[:search].nil? && !params[:search].empty?
+    if (!params[:search].nil? && !params[:search].empty?) || (!params[:user].nil? && !params[:user].empty?)
       query, conditions = create_conditions params
       start_time = Time.now
       tips = Tip.find(:all, :conditions => [query.join(' AND ')] + conditions)
       finish_time = Time.now
       search_time = finish_time - start_time
-      SavedSearch.create!(:search=>params[:search], :seconds=>search_time, :user=>user, :ip=>params[:ip])
+      SavedSearch.create!(:search=>"#{params[:search]}---#{params[:user]}", :seconds=>search_time, :user=>user, :ip=>params[:ip])
     end
     [tips||=Array.new, search_time||= nil]
   end
@@ -51,10 +51,12 @@ class Tip < ActiveRecord::Base
       query.push "user like ?"
       conditions.push params[:user]
     end
-    # Split all search criteria on spaces, and search in content
-    params[:search].split(' ').each do |keyword|
-      query.push "content like ?"
-      conditions.push "%#{keyword}%"
+    if !params[:search].nil? && !params[:search].empty?
+      # Split all search criteria on spaces, and search in content
+      params[:search].split(' ').each do |keyword|
+        query.push "content like ?"
+        conditions.push "%#{keyword}%"
+      end
     end
     [query, conditions]
   end

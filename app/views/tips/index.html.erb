@@ -1,23 +1,23 @@
 <table>
-<%= form_tag tips_path, :method => "get" do %>
-  <tr><td>
-  <%= label_tag :search, "Search:" %>
-  </td><td>
-  <%= text_field_tag :search, params[:search] %>
-  </td></tr>
-  <tr><td>
-  <%= label_tag :user, "User:" %>
-  </td><td>
-  <%= text_field_tag :user, params[:user] %>
-  </td></tr>
-  <tr><td colspan=2 style="text-align:right;">
-  <%= submit_tag "Search", :name => nil %>
+  <%= form_tag tips_path, :method => "get" do %>
+    <tr><td>
+    <%= label_tag :search, "Search:" %>
+    </td><td>
+    <%= text_field_tag :search, params[:search] %>
+    </td></tr>
+    <tr><td>
+    <%= label_tag :user, "User:" %>
+    </td><td>
+    <%= text_field_tag :user, params[:user] %>
+    </td></tr>
+    <tr><td colspan=2 style="text-align:right;">
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>
   </td><td style="width:100px;text-align:right;">
-  <%= button_to 'New Tip', new_tip_path %>
-  </td><td>
-<% end %>
+  <input type=button value="New Tip" onclick="location.href='<%=new_tip_path%>'" />
+  </td></tr>
 </table>
-
+<br>
 <table>
 <% @tips.each do |tip| %>
   <tr>
