@@ -1,3 +1,35 @@
 Admin Page
 Add users to admin group
 Add fields to save ldap info
+<h1>Administrative Users</h1>
+<table>
+  <% @admins.each do |admin| %>
+    <tr>
+      <td><%= admin.user %></td>
+      <td><%= button_to 'Remove', delete_admin_path(admin.id), :confirm => "Are you sure you want to remove #{admin.user} as an admin?", :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<h1>LDAP Information</h1>
+<table>
+  <% form_for @ldap, :url => save_ldap_path do |f| %>
+    <tr>
+      <td><%= f.label :host %></td>
+      <td colspan=3><%= f.text_field :host, :size => 33 %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :prefix %></td>
+      <td><%= f.text_field :prefix, :size => 5 %></td>
+      <td><%= f.label :postfix %></td>
+      <td><%= f.text_field :postfix, :size => 20 %></td>
+    </tr>
+    <tr>
+      <td colspan=4 style="color:#858585;">
+        <div style="text-align:right;">
+          <i>Ex: (prefix)uid="username"(postfix),cn=root</i>
+          <%= f.submit 'Save' %>
+        </div>
+      <td>
+    </tr>
+  <% end %>
+</table>

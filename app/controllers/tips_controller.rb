@@ -81,6 +81,9 @@ class TipsController < ApplicationController
     # Tips can only be destroyed by the user who created them
     if @tip.user==session[:user]
       @tip.destroy
+      flash[:notice] = "Tip destroyed."
+    else
+      flash[:error] = "Tips can only be deleted by the user who created them."
     end
 
     respond_to do |format|

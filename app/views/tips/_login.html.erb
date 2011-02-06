@@ -7,6 +7,10 @@
     <% end %>
   <% else %>
     <%= session[:user] %>
+    <% if session[:user_is_admin] %>
+      (admin)
+      <%= button_to 'Admin Page', admin_path %>
+    <% end %>
     <%= button_to 'Logout', logout_path %>
   <% end %>
 </span>
