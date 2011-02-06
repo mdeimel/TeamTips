@@ -1,6 +1,3 @@
-Admin Page
-Add users to admin group
-Add fields to save ldap info
 <h1>Administrative Users</h1>
 <table>
   <% @admins.each do |admin| %>
@@ -10,6 +7,12 @@ Add fields to save ldap info
     </tr>
   <% end %>
 </table>
+<h1>Add Admin User</h1>
+<% form_for @admin, :url => add_admin_path do |f| %>
+  <%= f.label :user %>
+  <%= f.text_field :user, :size => 20 %>
+  <%= f.submit 'Add Admin' %>
+<% end %>
 <h1>LDAP Information</h1>
 <table>
   <% form_for @ldap, :url => save_ldap_path do |f| %>

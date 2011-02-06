@@ -5,9 +5,23 @@ class AdminController < ApplicationController
     @admins = Admin.find(:all)
     @ldap = LdapInfo.find(:first) # and only
     @ldap = LdapInfo.new if @ldap.nil?
+    @admin = Admin.new
     respond_to do |format|
       format.html
     end
+  end
+  
+  def add_admin
+    admin = Admin.new(params[:admin])
+    if admin.save
+      flash[:notice] = "#{params[:admin][:user]} added to list of administrators"
+    else
+      flash[:error] = ""
+      admin.errors.each_full do |error|
+        flash[:error] += error + "\n"
+      end
+    end
+    redirect_to admin_path
   end
   
   def destroy
