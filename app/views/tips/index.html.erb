@@ -13,8 +13,9 @@
     <tr><td colspan=2 style="text-align:right;">
     <%= submit_tag "Search", :name => nil %>
   <% end %>
-  </td><td style="width:100px;text-align:right;">
-  <input type=button value="New Tip" onclick="location.href='<%=new_tip_path%>'" />
+  </td><td>
+  <input type=button id="new_tip" value="New Tip" onclick="location.href='<%=new_tip_path%>'" <%= "disabled" unless loggedin? %> />
+  <% if !loggedin? %><span class="note">You must be logged in</span><% end %>
   </td></tr>
 </table>
 <br>

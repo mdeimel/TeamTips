@@ -1,4 +1,6 @@
 class TipsController < ApplicationController
+  before_filter :authorize, :except => [:index, :show]
+  
   # GET /tips
   # GET /tips.xml
   def index
@@ -89,6 +91,15 @@ class TipsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(tips_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  private
+  def authorize
+    if session[:user].nil? || session[:user].empty?
+      flash[:error] = "You must be logged in to complete this action."
+      redirect_to tips_path
+      return false
     end
   end
 end

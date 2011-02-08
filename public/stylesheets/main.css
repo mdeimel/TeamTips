@@ -10,6 +10,17 @@
 body {
   //margin: 0px auto;
 }
+.tip_show_title {
+  font-size: 160%;
+  font-weight: bold;
+}
+.tip_show_title_user {
+  font-size: 120%;
+}
+.note {
+  color:#858585;
+  font-style: italic;
+}
 #logo {
   font-family: "Arial";
   font-size: 200%;
@@ -83,6 +94,12 @@ body {
 }
 .tip_title:hover {
   background-color: #B00731;
+}
+.tip_div_wrap {
+  white-space: pre-wrap;
+}
+.tip_div_no_wrap {
+  white-space: pre;
 }
 /*
 .button {

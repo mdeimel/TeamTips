@@ -5,10 +5,14 @@ Site provides text based storage of tips and tricks, and allows for quick full t
 Supports LDAP authentication, if no objects are stored in the LdapInfo table, it defaults to allowing users to login with just a username, and no password.
 
 ==Todo==
-1 - Pagination, especially important due to the heavy string processing in the index view
-2 - Finish admin page
-3 - Implement sorting, based on pageloads
-4 - Implement easy searching based on username in search field, such as "\tips\<user>"
-5 - Add "Random Tip" button
-6 - Allow for general browsing of tips (based on create data, page views?)
-7 - Fix search results to not show a line in the text twice if two search words are found on the same line
+* Pagination, especially important due to the heavy string processing in the index view
+* Implement sorting, based on pageloads
+* Implement easy searching based on username in search field, such as "\tips\<user>"
+* Add "Random Tip" button
+* Allow for general browsing of tips (based on create data, page views?)
+* Fix search results to not show a line in the text twice if two search words are found on the same line
+* Allow for HTML editing for colors and formatting
+* Create style sheets for viewing (ex: view page as java file with highlighting)
+
+==Done==
+* Finish admin page
