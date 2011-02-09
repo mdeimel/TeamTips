@@ -17,6 +17,9 @@ body {
 .tip_show_title_user {
   font-size: 120%;
 }
+.tip_date {
+  font-size: 80%;
+}
 .note {
   color:#858585;
   font-style: italic;
@@ -101,6 +104,23 @@ body {
 .tip_div_no_wrap {
   white-space: pre;
 }
+#tip_div {
+  font-family: "Courier New", Courier, monospace;
+}
+.page_link {
+  padding: 4px;
+  border: 1px;
+  margin: 2px;
+  border-style: solid;
+  font-size: 120%;
+}
+.selected_page_link {
+  background-color: #B00731;
+}
+.selected_page_link A:visited {
+  color: #FFFFFF;
+}
+A:link, A:visited, A:active, A:hover {text-decoration: none}
 /*
 .button {
   text-decoration: none;

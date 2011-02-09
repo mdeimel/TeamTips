@@ -1,5 +1,5 @@
 class TipsController < ApplicationController
-  before_filter :authorize, :except => [:index, :show]
+  before_filter :authorize, :except => [:index, :show, :browse]
   
   # GET /tips
   # GET /tips.xml
@@ -9,6 +9,16 @@ class TipsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tips }
+    end
+  end
+  
+  def browse
+    limit = 10
+    offset = (params[:page].to_i-1) * limit
+    @num_of_pages = (Tip.count.to_f / limit.to_f).ceil
+    @tips = Tip.find(:all, :order => "content", :limit => limit, :offset => offset)
+    respond_to do |format|
+      format.html { render :action => "index" }
     end
   end
 

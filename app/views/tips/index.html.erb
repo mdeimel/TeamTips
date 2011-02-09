@@ -19,10 +19,16 @@
   </td></tr>
 </table>
 <br>
+<% if !@num_of_pages.nil? && @num_of_pages > 1 %>
+  <% (@num_of_pages||=0).times do |page_num| %>
+    <span class="page_link <%= "selected_page_link" if (page_num+1)==params[:page].to_i %>"><%= link_to "#{page_num+1}", browse_path(page_num+1) %></span>
+  <% end %>
+<% end %>
+<br><br>
 <table class="search_table">
   <% @tips.each do |tip| %>
     <tr onclick="location.href='<%= tip_path(tip.id) %>'" class="tip_title">
-      <td colspan=2><%= tip.title %> (<%= tip.user %>)</td>
+      <td colspan=2><%= tip.title %> (<%= tip.user %>) <span class="tip_date"><%= tip.updated_at.strftime('%b %d %Y') %></span></td>
     </tr>
     <% if !@search_split.nil? %>
       <% @search_split.each do |split| %>
@@ -40,4 +46,7 @@
   <b>Search completed in <%= @search_time>1?"#{@search_time/1000} seconds":"#{@search_time} milliseconds" %></b>
   <br>
   <b>Page load time in <%= (page_time=Time.now-@start_time)>1?"#{page_time/1000} seconds":"#{page_time} milliseconds" %></b>
+<% end %>
+<% if @tips.nil? || @tips.empty? %>
+  <%= button_to "Browse All", browse_path(1) %>
 <% end %>
