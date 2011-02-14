@@ -15,12 +15,20 @@ class ApplicationController < ActionController::Base
     else
       set_current_user params[:username]
     end
-    redirect_to tips_path
+    if !request.referer.nil? # Try to redirect to the same page they logged in from
+      redirect_to request.referer
+    else
+      redirect_to tips_path
+    end
   end
   
   def logout
     session[:user] = nil
-    redirect_to tips_path
+    if request.referer.nil?
+      redirect_to tips_path
+    else
+      redirect_to request.referer
+    end
   end
   
   private
