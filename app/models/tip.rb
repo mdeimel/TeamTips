@@ -25,7 +25,7 @@ class Tip < ActiveRecord::Base
     if (!search_str.nil? && !search_str.empty?) || (!search_user.nil? && !search_user.empty?)
       query, conditions, split = create_conditions search_str, search_user
       start_time = Time.now
-      tips = Tip.find(:all, :conditions => [query.join(' AND ')] + conditions)
+      tips = Tip.find(:all, :conditions => [query.join(' AND ')] + conditions, :order => 'pageloads DESC,updated_at DESC')
       finish_time = Time.now
       search_time = (finish_time - start_time).to_f
       SavedSearch.create!(:search=>"#{search_str}---#{search_user}", :seconds=>search_time, :user=>session_user, :ip=>ip)
