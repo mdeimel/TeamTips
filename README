@@ -10,9 +10,9 @@ Supports LDAP authentication, if no objects are stored in the LdapInfo table, it
 * Implement easy searching based on username in search field, such as "\tips\<user>"
 * Add "Random Tip" button
 * Allow for general browsing of tips (based on create data, page views?)
-* Fix search results to not show a line in the text twice if two search words are found on the same line
 * Allow for HTML editing for colors and formatting
 * Create style sheets for viewing (ex: view page as java file with highlighting)
 
 ==Done==
 * Finish admin page
+* Fix search results to not show a line in the text twice if two search words are found on the same line

@@ -31,12 +31,9 @@
       <td colspan=2><%= tip.title %> (<%= tip.user %>) <span class="tip_date"><%= tip.updated_at.strftime('%b %d %Y') %></span></td>
     </tr>
     <% if !@search_split.nil? %>
-      <% @search_split.each do |split| %>
-        <% tip.body.scan(/^.*#{split}.*$/i).each do |search_lines| %>
-          <tr><td style="width:1em;"></td><td>
-          <%= raw(search_lines.gsub(/#{split}/i, "<b>#{split}</b>")) %>
-          </td></tr>
-        <% end %>
+      <% search_results = highlight_body(tip.body, @search_split) %>
+      <% search_results.each do |search_result| %>
+        <tr><td><td><%= raw(search_result) %></td></td></tr>
       <% end %>
     <% end %>
   <% end %>
