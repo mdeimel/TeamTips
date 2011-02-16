@@ -1,6 +1,7 @@
 <span class="tip_show_title"><%= @tip.title %></span>
 <span class="tip_show_title_user">&nbsp(<%= @tip.user %>)</span>&nbsp
 <% if session[:user]==@tip.user %>
+  <%= link_to 'Delete', @tip, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to 'Edit', edit_tip_path(@tip) %> |
 <% end %>
 <%= link_to_function "No Word Wrap", "TT.changeWordWrap()", :id => "word_wrap_link" %>

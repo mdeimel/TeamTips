@@ -7,9 +7,10 @@ module TipsHelper
     counter = 0
     body.each_line do |line|
       break if counter >= 5
+      line = h(line) # Escape the line before sending it back to be used with raw()
       replaced_line = line.gsub(/#{search_vals}/i) { |val| "<b>#{val}</b>" }
       if replaced_line != line
-        results.push replaced_line
+        results.push(replaced_line)
         counter+=1
       end
     end

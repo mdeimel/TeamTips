@@ -12,11 +12,11 @@
     </td></tr>
     <tr><td colspan=2 style="text-align:right;">
     <%= submit_tag "Search", :name => nil %>
+    </td><td>
+    <input type=button id="new_tip" value="New Tip" onclick="location.href='<%=new_tip_path%>'" <%= "disabled" unless loggedin? %> />
+    <% if !loggedin? %><span class="note">You must be logged in</span><% end %>
+    </td></tr>
   <% end %>
-  </td><td>
-  <input type=button id="new_tip" value="New Tip" onclick="location.href='<%=new_tip_path%>'" <%= "disabled" unless loggedin? %> />
-  <% if !loggedin? %><span class="note">You must be logged in</span><% end %>
-  </td></tr>
 </table>
 <br>
 <% if !@num_of_pages.nil? && @num_of_pages > 1 %>
