@@ -1,38 +1,46 @@
-<h2>Administrative Users</h2>
-<table>
-  <% @admins.each do |admin| %>
-    <tr>
-      <td><%= admin.user %></td>
-      <td><%= button_to 'Remove', delete_admin_path(admin.id), :confirm => "Are you sure you want to remove #{admin.user} as an admin?", :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-<h2>Add Admin User</h2>
+<fieldset>
+  <legend>Administrative Users</legend>
+  <table>
+    <% @admins.each do |admin| %>
+      <tr>
+        <td><%= admin.user %></td>
+        <td><%= button_to 'Remove', delete_admin_path(admin.id), :confirm => "Are you sure you want to remove #{admin.user} as an admin?", :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+</fieldset>
+<br>
 <% form_for @admin, :url => add_admin_path do |f| %>
-  <%= f.label :user %>
-  <%= f.text_field :user, :size => 20 %>
-  <%= f.submit 'Add Admin' %>
+  <fieldset>
+    <legend>Add Admin User</legend>
+    <%= f.label :user %>
+    <%= f.text_field :user, :size => 20 %>
+    <%= f.submit 'Add Admin' %>
+  </fieldset>
 <% end %>
-<h2>LDAP Information</h2>
-<table>
-  <% form_for @ldap, :url => save_ldap_path do |f| %>
-    <tr>
-      <td><%= f.label :host %></td>
-      <td colspan=3><%= f.text_field :host, :size => 33 %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :prefix %></td>
-      <td><%= f.text_field :prefix, :size => 5 %></td>
-      <td><%= f.label :postfix %></td>
-      <td><%= f.text_field :postfix, :size => 20 %></td>
-    </tr>
-    <tr>
-      <td colspan=4 style="color:#858585;">
-        <div style="text-align:right;">
-          <i>Ex: (prefix)uid="username"(postfix),cn=root</i>
-          <%= f.submit 'Save' %>
-        </div>
-      <td>
-    </tr>
-  <% end %>
-</table>
+<br>
+<fieldset>
+  <legend>LDAP Information</legend>
+  <table>
+    <% form_for @ldap, :url => save_ldap_path do |f| %>
+      <tr>
+        <td><%= f.label :host %></td>
+        <td colspan=3><%= f.text_field :host, :size => 33 %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :prefix %></td>
+        <td><%= f.text_field :prefix, :size => 5 %></td>
+        <td><%= f.label :postfix %></td>
+        <td><%= f.text_field :postfix, :size => 20 %></td>
+      </tr>
+      <tr>
+        <td colspan=4 style="color:#858585;">
+          <div style="text-align:right;">
+            <i>Ex: (prefix)uid="username"(postfix),cn=root</i>
+            <%= f.submit 'Save' %>
+          </div>
+        <td>
+      </tr>
+    <% end %>
+  </table>
+</fieldset>

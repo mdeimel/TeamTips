@@ -121,6 +121,25 @@ body {
   color: #FFFFFF;
 }
 A:link, A:visited, A:active, A:hover {text-decoration: none}
+legend {
+  font-size: 120%;
+  color: #FFFFFF;
+  background: rgb(97, 4, 27); /* Fallback for browsers that do not support rgba */
+  background: rgba(97, 4, 27, 0.6);
+}
+fieldset {
+  background: rgb(69, 58, 54); /* Fallback for browsers that do not support rgba */
+  background: rgba(69, 58, 54, 0.2);
+}
+
+/*
+// Color Palette
+//Light Gray 858585
+//Brown 453A36 or 69,58,54
+//Dark Gray 242122 or 36,33,34
+//Dark Red 61041B or 97,4,27
+//Light Red B00731
+*/
 /*
 .button {
   text-decoration: none;
