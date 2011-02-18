@@ -40,6 +40,9 @@
 </table>
 <br>
 <% if !@search_time.nil? %>
+  <% if @tips.size==0 %>
+    <h2>No results found.</h2><br>
+  <% end %>
   <b>Search completed in <%= @search_time>1?"#{@search_time/1000} seconds":"#{@search_time} milliseconds" %></b>
   <br>
   <b>Page load time in <%= (page_time=Time.now-@start_time)>1?"#{page_time/1000} seconds":"#{page_time} milliseconds" %></b>
