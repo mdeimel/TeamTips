@@ -10,6 +10,7 @@ class Tip < ActiveRecord::Base
   
   def title=(val)
     self.content = [val, body].join(@@title_separator)
+    @title = val # Reset class value so it's not stale
   end
   
   # Getter and setter for virtual attribute "body"
@@ -19,6 +20,7 @@ class Tip < ActiveRecord::Base
   
   def body=(val)
     self.content = [title, val].join(@@title_separator)
+    @body = val # Reset class value so it's not stale
   end
   
   def self.search search_str, search_user, session_user, ip

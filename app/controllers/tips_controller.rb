@@ -76,7 +76,13 @@ class TipsController < ApplicationController
     @tip = Tip.find(params[:id])
 
     respond_to do |format|
-      if @tip.user==session[:user] && @tip.update_attributes(params[:tip])
+      # This will check to see if an update is occurring on a page that has already been updated
+      if params[:updated_at] != @tip.updated_at.to_s
+        flash[:error] = "This tip is stale, please save your changes, search for the tip again, and edit."
+        @tip.title = params[:tip][:title]
+        @tip.body = params[:tip][:body]
+        format.html { render :action => :edit, @tip => @tip }
+      elsif @tip.user==session[:user] && @tip.update_attributes(params[:tip])
         format.html { redirect_to(@tip, :notice => 'Tip was successfully updated.') }
         format.xml  { head :ok }
       else

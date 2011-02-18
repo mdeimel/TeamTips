@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+  <%= hidden_field_tag :updated_at, @tip.updated_at %>
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title, :size => 78 %>
