@@ -131,7 +131,12 @@ fieldset {
   background: rgb(69, 58, 54); /* Fallback for browsers that do not support rgba */
   background: rgba(69, 58, 54, 0.2);
 }
-
+.footer_information {
+  font-weight: bold;
+  background: rgb(69, 58, 54); /* Fallback for browsers that do not support rgba */
+  background: rgba(69, 58, 54, 0.2);
+  padding: 2px;
+}
 /*
 // Color Palette
 //Light Gray 858585
