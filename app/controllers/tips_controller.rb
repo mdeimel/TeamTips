@@ -16,7 +16,9 @@ class TipsController < ApplicationController
     limit = 10
     offset = (params[:page].to_i-1) * limit
     @num_of_pages = (Tip.count.to_f / limit.to_f).ceil
+    @start_time = Time.now
     @tips = Tip.find(:all, :order => "content", :limit => limit, :offset => offset)
+    @search_time = Time.now - @start_time
     respond_to do |format|
       format.html { render :action => "index" }
     end
