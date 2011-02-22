@@ -1,5 +1,5 @@
 <table style="inline_table">
-  <%= form_tag tips_path, :method => "get" do %>
+  <%= form_tag(tips_path, :method => "get") do %>
     <tr><td>
     <%= label_tag :search, "Search:" %>
     </td><td>
@@ -58,3 +58,4 @@
 <% else %>
   <%= button_to "Browse All", browse_path(1) %>
 <% end %>
+<%= set_focus_to_id "search" %>
