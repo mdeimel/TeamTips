@@ -1,5 +1,5 @@
 <table style="inline_table">
-  <%= form_tag(tips_path, :method => "get") do %>
+  <%= form_tag tips_path, :method => "get" do %>
     <tr><td>
     <%= label_tag :search, "Search:" %>
     </td><td>
@@ -31,7 +31,7 @@
       <tr onclick="location.href='<%= tip_path(tip.id) %>'" class="tip_title">
         <td colspan=2><%= tip.title %> (<%= tip.user %>) <span class="tip_date"><%= tip.updated_at.strftime('%b %d %Y') %></span></td>
       </tr>
-      <% if !@search_split.nil? %>
+      <% if !@search_split.nil? && @search_split.size > 0 %>
         <% search_results = highlight_body(tip.body, @search_split) %>
         <% search_results.each do |search_result| %>
           <tr><td><td><%= raw(search_result) %></td></td></tr>
