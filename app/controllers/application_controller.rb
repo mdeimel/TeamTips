@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
   
   def logout
-    session[:user] = nil
+    session.clear
     if request.referer.nil?
       redirect_to tips_path
     else

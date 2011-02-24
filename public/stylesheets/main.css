@@ -1,10 +1,13 @@
 /*
 // Color Palette
-//Light Gray 858585
-//Brown 453A36
-//Dark Gray 242122
-//Dark Red 61041B
-//Light Red B00731
+//Light Gray 
+//Medium Gray 858585
+//Brown 453A36 or 69,58,54
+//Dark Gray 242122 or 36,33,34
+//Dark Red 61041B or 97,4,27
+//Medium Red B00731
+//Light Red CD7C7C
+//Yellow FFFF00
 */
 
 body {
@@ -61,30 +64,18 @@ body {
   left: 14em;
   top: 0px;
   font-size: 150%;
-  background: rgb(36, 33, 34); /* Fallback for browsers that do not support rgba */
-  background: rgba(36, 33, 34, 0.7);
-  padding-bottom: 10px;
-  padding-right: 10px;
-  padding-left: 10px;
-  -moz-border-radius-bottomleft: 15px;
-  -moz-border-radius-bottomright: 15px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
 }
 .flash_notice {
   padding: 5px;
-  background: rgb(0, 255, 0); /* Fallback for browsers that do not support rgba */
-  background: rgba(0, 255, 0, 0.7);
+  background: #00FF00;
 }
 .flash_warning {
   padding: 5px;
-  background: rgb(255, 255, 0); /* Fallback for browsers that do not support rgba */
-  background: rgba(255, 255, 0, 0.7);
+  background: #FFFF00;
 }
 .flash_error {
   padding: 5px;
-  background: rgb(255, 0, 0); /* Fallback for browsers that do not support rgba */
-  background: rgba(255, 0, 0, 0.7);
+  background: #FF0000;
 }
 /* Tip Search Formatting */
 .search_table {
@@ -124,26 +115,25 @@ A:link, A:visited, A:active, A:hover {text-decoration: none}
 legend {
   font-size: 120%;
   color: #FFFFFF;
-  background: rgb(97, 4, 27); /* Fallback for browsers that do not support rgba */
-  background: rgba(97, 4, 27, 0.6);
+  background: #CD7C7C;
 }
 fieldset {
-  background: rgb(69, 58, 54); /* Fallback for browsers that do not support rgba */
-  background: rgba(69, 58, 54, 0.2);
+  background: #DDDDDD;
 }
 .footer_information {
   font-weight: bold;
-  background: rgb(69, 58, 54); /* Fallback for browsers that do not support rgba */
-  background: rgba(69, 58, 54, 0.2);
+  background: #DDDDDD;
   padding: 2px;
 }
 /*
 // Color Palette
-//Light Gray 858585
+//Light Gray 
+//Medium Gray 858585
 //Brown 453A36 or 69,58,54
 //Dark Gray 242122 or 36,33,34
 //Dark Red 61041B or 97,4,27
-//Light Red B00731
+//Medium Red B00731
+//Light Red CD7C7C
 */
 /*
 .button {
