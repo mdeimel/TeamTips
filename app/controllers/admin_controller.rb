@@ -6,6 +6,7 @@ class AdminController < ApplicationController
     @ldap = LdapInfo.find(:first) # and only
     @ldap = LdapInfo.new if @ldap.nil?
     @admin = Admin.new
+    @stats = SavedSearch.get_stats
     respond_to do |format|
       format.html
     end
