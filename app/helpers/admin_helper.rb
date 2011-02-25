@@ -1,6 +1,6 @@
 module AdminHelper
   def user_tip_count_bar_chart user_tip_count
-    return "<img src=\"http://chart.apis.google.com/chart?chxl=1:|#{user_tip_count.keys.join "|"}&chxr=0,0,#{user_tip_count.values.max}&chxt=y,x&chbh=a&chs=300x150&cht=bvs&chds=0,#{user_tip_count.values.max}&chd=t:#{user_tip_count.values.join ","}&chdl=Number+of+Tips\" width=\"300\" height=\"150\" alt=\"\" />"
+    return "<img src=\"http://chart.apis.google.com/chart?chxl=1:|#{user_tip_count.keys.join "|"}&chxr=0,0,#{user_tip_count.values.max}&chxt=y,x&chbh=a&chs=300x150&cht=bvs&chds=0,#{user_tip_count.values.max}&chd=t:#{user_tip_count.values.join ","}&chtt=Number+of+Tips\" width=\"300\" height=\"150\" alt=\"\" />"
   end
   
   def user_tip_count_pie_chart user_tip_count
