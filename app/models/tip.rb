@@ -34,6 +34,15 @@ class Tip < ActiveRecord::Base
     end
     [tips||=Array.new, search_time||= nil, split||=Array.new]
   end
+  
+  def self.get_stats
+    user_tip_count = Hash.new
+    users = Tip.find(:all, :select => "distinct user")
+    users.each do |user|
+      user_tip_count[user.user] = Tip.count(:all, :conditions => ["user like ?", user.user])
+    end
+    user_tip_count
+  end
 
   private
   @@title_separator = "\r\ntitle\r\n"

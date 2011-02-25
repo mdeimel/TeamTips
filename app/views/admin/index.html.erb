@@ -48,7 +48,13 @@
 <fieldset>
   <legend>Search Statistics</legend>
   <b>Seconds</b><br>
-  Maximum: <%= @stats[:max] %><br>
-  Minimum: <%= @stats[:min] %><br>
-  Average: <%= @stats[:avg] %>
+  Maximum: <%= @ss_stats[:max] %><br>
+  Minimum: <%= @ss_stats[:min] %><br>
+  Average: <%= @ss_stats[:avg] %>
+</fieldset>
+<br>
+<fieldset>
+  <legend>Tip Statistics</legend>
+  <%= raw(user_tip_count_bar_chart @user_tip_count) %>
+  <%= raw(user_tip_count_pie_chart @user_tip_count) %>
 </fieldset>
