@@ -1,6 +1,6 @@
 <span class="tip_show_title"><%= @tip.title %></span>
 <span class="tip_show_title_user">&nbsp(<%= @tip.user %>)</span>&nbsp
-<% if session[:user]==@tip.user || session[:user_is_admin] %>
+<% if session[:user]==@tip.user %>
   <%= link_to 'Delete', @tip, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to 'Edit', edit_tip_path(@tip) %> |
 <% end %>

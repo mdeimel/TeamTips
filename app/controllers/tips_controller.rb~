@@ -79,7 +79,7 @@ class TipsController < ApplicationController
 
     respond_to do |format|
       # Only allow the tip creator to update the tip
-      if @tip.user!=session[:user] && !session[:user_is_admin]
+      if @tip.user!=session[:user] || session[:user_is_admin]
         flash[:error] = "Tips can only be updated by the user who created them, or an admin."
         format.html { redirect_to tips_path }
       # This will check to see if an update is occurring on a page that has already been updated
